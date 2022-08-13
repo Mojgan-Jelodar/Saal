@@ -17,6 +17,11 @@ This is an application which shows a list of some products as a list. In additio
 # App Version
 - 1.0.0 
 
+# UI
+## UIKit
+## Modern View Configuration With UIContentConfiguration
+## UITableviewdiffabledatasource 
+
 # Design Pattern Used
 
 ## VIPER
@@ -42,10 +47,9 @@ Viper is a design pattern that implements ‘separation of concern’ paradigm. 
 - Realm is used for data caching. Items retrieve from a relational models.
 
 
-# Assumptions        
--   The app is designed for iPhones and iPad.        
+# Assumptions                
 -   App currently supports English language.
--   Mobile and iPad platform supported: iOS (14.x,15.x)        
+-   Mobile and iPad platform supported: iOS (14.x +)        
 -   Device support : iPhone , iPad  
 -   Data caching is available.
 
@@ -54,6 +58,8 @@ Viper is a design pattern that implements ‘separation of concern’ paradigm. 
 # Frameworks/Libraries used
 - SnapKit
 - RealmSwift
+- Combine
+
 
 
 # Unit Test

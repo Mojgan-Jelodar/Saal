@@ -19,7 +19,7 @@ class ProductViewData {
         self.title = product?.name
         self.description = product?.productDescription
         self.categories = categories.map({.init(category: $0, isSelected: product?.category.first == $0)})
-        guard let relations = product?.relations else { return  }
+        guard let relations = product?.relatedProducts else { return  }
         self.relations = Array(relations).map({ProductViewItem(id: $0.id,
                                                                categoryName: $0.category.first?.name ?? "",
                                                                name: $0.name,

@@ -11,8 +11,12 @@ final public class Product: Object {
     @Persisted(primaryKey: true) var id: String
     @Persisted var name : String
     @Persisted var productDescription : String?
-    @Persisted var relations: List<Product>
-    @Persisted(originProperty: Category.Key.products.rawValue) var category: LinkingObjects<Category> 
+    @Persisted private var relations: List<Product>
+    @Persisted(originProperty: Category.Key.products.rawValue) var category: LinkingObjects<Category>
+    
+    var relatedProducts : [Product] {
+        return Array(relations)
+    }
     
     public convenience  init(id: String,
                              name: String,
@@ -25,6 +29,41 @@ final public class Product: Object {
     
     public override class func primaryKey() -> String? {
         return "id"
+    }
+    
+    func add(relation : Product) {
+        if let realm = self.realm {
+            realm.safeWrite {
+                self.relations.append(relation)
+            }
+        } else {
+            self.relations.append(relation)
+        }
+    }
+    
+    func add(relations : [Product]) {
+        if let realm = self.realm {
+            realm.safeWrite {
+                self.relations.append(objectsIn: relations)
+            }
+        } else {
+            self.relations.append(objectsIn: relations)
+        }
+    }
+    
+    func remove(relation : Product) {
+        guard let index = relations.firstIndex(where: {$0.id == relation.id })  else { return }
+        if let realm = self.realm {
+            realm.safeWrite {
+                self.relations.remove(at: index)
+            }
+        } else {
+            self.relations.remove(at: index)
+        }
+    }
+    
+    func findBy(id : String) -> Product? {
+        self.relations.first(where: {$0.id == id})
     }
 }
 extension Product {

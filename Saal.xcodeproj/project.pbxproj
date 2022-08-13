@@ -48,7 +48,6 @@
 		09253080289ABF8500EFD512 /* Realm+Storable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09253079289ABF8500EFD512 /* Realm+Storable.swift */; };
 		09253081289ABF8500EFD512 /* StorageContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0925307A289ABF8500EFD512 /* StorageContext.swift */; };
 		09253084289ACBB900EFD512 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 09253083289ACBB900EFD512 /* RealmSwift */; };
-		092FD73128A30C0E006CC029 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092FD73028A30C0E006CC029 /* Object.swift */; };
 		092FD73328A31D30006CC029 /* Common.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 092FD73228A31D30006CC029 /* Common.stringsdict */; };
 		092FD73628A32ECF006CC029 /* ProductListCellActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092FD73528A32ECF006CC029 /* ProductListCellActions.swift */; };
 		092FD73828A32EF7006CC029 /* ProductViewAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092FD73728A32EF7006CC029 /* ProductViewAction.swift */; };
@@ -134,7 +133,6 @@
 		09253078289ABF8500EFD512 /* RealmStorageContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmStorageContext.swift; sourceTree = "<group>"; };
 		09253079289ABF8500EFD512 /* Realm+Storable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Realm+Storable.swift"; sourceTree = "<group>"; };
 		0925307A289ABF8500EFD512 /* StorageContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageContext.swift; sourceTree = "<group>"; };
-		092FD73028A30C0E006CC029 /* Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
 		092FD73228A31D30006CC029 /* Common.stringsdict */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; path = Common.stringsdict; sourceTree = "<group>"; };
 		092FD73528A32ECF006CC029 /* ProductListCellActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListCellActions.swift; sourceTree = "<group>"; };
 		092FD73728A32EF7006CC029 /* ProductViewAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewAction.swift; sourceTree = "<group>"; };
@@ -341,7 +339,6 @@
 			children = (
 				090E5736289DC7E100FABE11 /* UIView.swift */,
 				090E570B289D424100FABE11 /* Realm.swift */,
-				092FD73028A30C0E006CC029 /* Object.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -617,7 +614,6 @@
 				092FD73628A32ECF006CC029 /* ProductListCellActions.swift in Sources */,
 				0925301D289ABBE700EFD512 /* AppDelegate.swift in Sources */,
 				090E5752289E032500FABE11 /* ProductListViewController.swift in Sources */,
-				092FD73128A30C0E006CC029 /* Object.swift in Sources */,
 				090E573A289DC8F800FABE11 /* Layout.swift in Sources */,
 				09FA2F4128A6D92D0092D8E6 /* SuggestibleProductsInterfaces.swift in Sources */,
 				09253081289ABF8500EFD512 /* StorageContext.swift in Sources */,

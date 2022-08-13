@@ -65,17 +65,14 @@ final class ProductViewController: UIViewController {
     private lazy var relatedButton: UIButton = {
         let btn = UIButton(type: .system)
         btn.setTitle(R.string.product.relatedTitle(), for: .normal)
-        btn.backgroundColor = R.color.primaryColor()?.withAlphaComponent(0.8)
+        btn.backgroundColor = R.color.primaryColor()
         btn.setTitleColor(R.color.onPrimary(), for: .normal)
-        btn.alpha = 0.4
         return btn
     }()
     
     private lazy var saveButton: UIButton = {
         let btn = UIButton(type: .system)
         btn.setTitle(R.string.product.save(), for: .normal)
-        btn.backgroundColor = R.color.primaryColor()
-        btn.setTitleColor(R.color.onPrimary(), for: .normal)
         return btn
     }()
     
@@ -125,23 +122,22 @@ final class ProductViewController: UIViewController {
     
     private func setupView() {
         self.title = R.string.product.productPageTitle()
+        self.navigationItem.rightBarButtonItem = .init(customView: saveButton)
         self.tableView.dataSource = dataSource
-        self.view.addSubview(self.stackView)
+        self.view.addSubview(stackView)
         self.stackView.addArrangedSubview(idTextField)
         self.stackView.addArrangedSubview(categoryPickerView)
         self.stackView.addArrangedSubview(titleTextField)
         self.stackView.addArrangedSubview(descriptionTextField)
-        self.stackView.setCustomSpacing(Layout.spacing28, after: descriptionTextField)
-        self.stackView.addArrangedSubview(relatedButton)
-        self.stackView.addArrangedSubview(saveButton)
         self.stackView.addArrangedSubview(tableView)
+        self.stackView.addArrangedSubview(relatedButton)
         self.setConstraints()
     }
     
     private func setConstraints() {
         stackView.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeArea.top).offset(Layout.padding16)
-            make.bottom.equalTo(self.view.safeArea.bottom).offset(Layout.padding8)
+            make.bottom.equalTo(self.view.safeArea.bottom).offset(-Layout.padding16)
             make.leading.trailing.equalToSuperview().inset(Layout.padding8)
         }
     }

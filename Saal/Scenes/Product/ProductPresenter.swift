@@ -109,7 +109,6 @@ extension ProductPresenter : SuggestibleProductsWireframeMoudleDelegate {
     func didFinish(relatedProducts: [Product]) {
         self.productRelatedDidUpdated(products: relatedProducts)
     }
-    
 }
 extension ProductPresenter : ProductMoudleProtocol {
     func productRelatedDidUpdated(products: [Product]) {

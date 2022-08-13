@@ -52,10 +52,10 @@ class RealmStorageTests: XCTestCase {
         employee.products.append(employeeMax)
         server.products.append(serverK32145)
         
-        desk34.relations.append(calculatorT5812)
-        desk34.relations.append(employeeMax)
+        desk34.add(relation: calculatorT5812)
+        desk34.add(relation :employeeMax)
 
-        serverK32145.relations.append(employeeMax)
+        serverK32145.add(relation :employeeMax)
         
         
         

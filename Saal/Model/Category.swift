@@ -26,6 +26,24 @@ final public class Category: Object {
     public override class func primaryKey() -> String? {
         "id"
     }
+    
+    func add(product : Product) {
+        if self.products.first(where: { $0.id == product.id}) == nil  {
+            if let realm = self.realm {
+                realm.safeWrite {
+                    self.products.append(product)
+                }
+            } else {
+                self.products.append(product)
+            }
+        }
+    }
+    func add(products : [Product]) {
+        for product in products {
+            self.add(product: product)
+        }
+    }
+    
 }
 extension Category {
     enum Key : String {

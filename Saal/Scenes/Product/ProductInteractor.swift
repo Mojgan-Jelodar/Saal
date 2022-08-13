@@ -32,8 +32,8 @@ final class ProductInteractor {
     
     private func loadCategory() {
         let categories =  self.storageContext.fetch(Category.self,
-                                                          predicate: nil,
-                                                          sorted: .init(key: "\(Category.Key.id.rawValue)"))
+                                                    predicate: nil,
+                                                    sorted: .init(key: "\(Category.Key.id.rawValue)"))
         categorySubject.send(Array(categories))
     }
 }
@@ -42,12 +42,11 @@ final class ProductInteractor {
 
 extension ProductInteractor: ProductInteractorInterface {
     func deleteRelation(id: String) {
-        guard let product = self.productSubject.value?.detached(),
-              let index = product.relations.firstIndex(where: {$0.id == id}) else {
+        guard let product = self.productSubject.value,
+              let relation = product.findBy(id: id) else {
             return
         }
-        product.relations.remove(at: index)
-        self.storageContext.save(object: product)
+        product.remove(relation: relation)
         productSubject.send(product)
     }
     
@@ -56,12 +55,14 @@ extension ProductInteractor: ProductInteractorInterface {
                     description: String?,
                     categoryId: String,
                     relations: [String]?) {
-        let category = categorySubject.value.first(where: {$0.id == categoryId})!.detached()
+        let category = categorySubject.value.first(where: {$0.id == categoryId})!
         let predicate = NSPredicate(format: "id IN $ID_LIST")
-        let products = storageContext.fetch(Product.self, predicate: predicate.withSubstitutionVariables(["ID_LIST": relations ?? []]), sorted: nil)
+        let products = storageContext.fetch(Product.self,
+                                            predicate: predicate.withSubstitutionVariables(["ID_LIST": relations ?? []]),
+                                            sorted: nil)
         let product = Product.init(id: id, name: name, productDescription: description)
-        product.relations.append(objectsIn: Array(products))
-        category.products.append(product)
+        product.add(relations: Array(products))
+        category.add(product: product)
         storageContext.save(object: category)
         
     }
@@ -69,7 +70,7 @@ extension ProductInteractor: ProductInteractorInterface {
     func getSuggestibleProducts() -> AnyPublisher<[Product], Never> {
         var predicate :NSPredicate?
         if let product = self.productSubject.value {
-            let ids : [String] = product.relations.map({$0.id})
+            let ids : [String] = product.relatedProducts.map({$0.id})
             predicate = .init(format: "id != $id and not(id IN $ID_LIST)")
                 .withSubstitutionVariables(["id" : product.id,
                                             "ID_LIST" : ids])
@@ -79,9 +80,8 @@ extension ProductInteractor: ProductInteractorInterface {
     }
     
     func addRelations(products: [Product]) {
-        guard let product = self.productSubject.value?.detached() else { return  }
-        product.relations.append(objectsIn: products)
-        storageContext.save(object: product)
+        guard let product = self.productSubject.value else { return  }
+        product.add(relations: products)
         productSubject.send(product)
         
     }

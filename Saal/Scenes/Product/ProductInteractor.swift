@@ -64,6 +64,7 @@ extension ProductInteractor: ProductInteractorInterface {
         product.add(relations: Array(products))
         category.add(product: product)
         storageContext.save(object: category)
+        productSubject.send(product)
         
     }
     
@@ -83,6 +84,5 @@ extension ProductInteractor: ProductInteractorInterface {
         guard let product = self.productSubject.value else { return  }
         product.add(relations: products)
         productSubject.send(product)
-        
     }
 }

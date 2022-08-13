@@ -36,6 +36,7 @@ final class ProductPresenter : ProductPresenterInterface {
     private var cancellables = Set<AnyCancellable>()
     
     @Published var productViewData: ProductViewData?
+    @Published var isEditing: Bool = false
     private(set) var selectedIndex : Int?
     weak var moudleDelegate : ProductMoudleDelegate?
     
@@ -75,6 +76,14 @@ final class ProductPresenter : ProductPresenterInterface {
             let productViewData = ProductViewData(product: product, categories: categories)
             return productViewData
         }).assign(to: &self.$productViewData)
+        
+        interactor.product.compactMap({$0}).sink { [weak self] product in
+            guard let self = self else {
+                return
+            }
+            self.isEditing = true
+            self.moudleDelegate?.productDidUpdated(product: product)
+        }.store(in: &cancellables)
     }
     
     private func removeRelation(product: ProductViewItem) {
@@ -93,6 +102,7 @@ final class ProductPresenter : ProductPresenterInterface {
                               description: productViewData?.description ?? nil,
                               categoryId: categoryId,
                               relations: productViewData?.relations.map({$0.id}))
+        
     }
     
     private func getRelatedProducts() {

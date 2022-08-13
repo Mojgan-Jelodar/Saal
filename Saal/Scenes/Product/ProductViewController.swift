@@ -64,15 +64,17 @@ final class ProductViewController: UIViewController {
     
     private lazy var relatedButton: UIButton = {
         let btn = UIButton(type: .system)
-        btn.setTitle(R.string.product.relatedTitle(), for: .normal)
-        btn.backgroundColor = R.color.primaryColor()
-        btn.setTitleColor(R.color.onPrimary(), for: .normal)
+        btn.setImage(.init(systemName: "plus"), for: .normal)
+       // btn.setTitle(R.string.product.relatedTitle(), for: .normal)
+       
         return btn
     }()
     
     private lazy var saveButton: UIButton = {
         let btn = UIButton(type: .system)
         btn.setTitle(R.string.product.save(), for: .normal)
+        btn.backgroundColor = R.color.primaryColor()
+        btn.setTitleColor(R.color.onPrimary(), for: .normal)
         return btn
     }()
     
@@ -121,7 +123,7 @@ final class ProductViewController: UIViewController {
     
     private func setupView() {
         self.title = R.string.product.productPageTitle()
-        self.navigationItem.rightBarButtonItem = .init(customView: saveButton)
+        self.navigationItem.rightBarButtonItem = .init(customView: relatedButton)
         self.tableView.dataSource = dataSource
         self.view.addSubview(stackView)
         self.stackView.addArrangedSubview(idTextField)
@@ -129,7 +131,7 @@ final class ProductViewController: UIViewController {
         self.stackView.addArrangedSubview(titleTextField)
         self.stackView.addArrangedSubview(descriptionTextField)
         self.stackView.addArrangedSubview(tableView)
-        self.stackView.addArrangedSubview(relatedButton)
+        self.stackView.addArrangedSubview(saveButton)
         self.setConstraints()
     }
     
@@ -159,10 +161,8 @@ final class ProductViewController: UIViewController {
     }
     private func presenterBinding() {
         presenter
-            .$productViewData
-            .map(\.?.id)
-            .replaceNil(with: "")
-            .map({$0.isEmpty})
+            .$isEditing
+            .map({!$0})
             .assign(to: \.isEnabled, on: idTextField)
             .store(in: &cancellables)
         
@@ -189,9 +189,9 @@ final class ProductViewController: UIViewController {
         categoryPickerView.$rowSelectedPublisher
             .compactMap({$0})
             .sink { [weak self] indexPath in
-            guard let self = self else { return }
-            self.presenter.viewEventSubject.send(.selectedCategory(index: indexPath.row))
-        }.store(in: &cancellables)
+                guard let self = self else { return }
+                self.presenter.viewEventSubject.send(.selectedCategory(index: indexPath.row))
+            }.store(in: &cancellables)
         
         relatedButton.tapPublisher.sink { [weak self] in
             guard let self = self else { return }

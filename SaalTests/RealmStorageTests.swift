@@ -57,8 +57,6 @@ class RealmStorageTests: XCTestCase {
 
         serverK32145.add(relation :employeeMax)
         
-        
-        
         let categories = [desk,server,employee,calculator]
         
         //When
@@ -70,7 +68,7 @@ class RealmStorageTests: XCTestCase {
         XCTAssertEqual(list?.count, 2)
     }
     
-    func testDeleteObject()  {
+    func testDeleteObject() {
         //Given
         let category = Category.desk
         guard let shoes = subjectUnderTest?.fetch(Category.self,

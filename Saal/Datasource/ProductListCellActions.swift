@@ -23,19 +23,18 @@ final class ProductListCellActions :  ProductViewCellActions {
     var actions: [UIAction]? {
         [
             .init(title: R.string.product.editButton(),
-                  image: UIImage(named: "pencil.line")) { action in
+                  image: UIImage(named: "pencil.line")) { _ in
                       self.viewEventSubject.send(.update(product: self.product))
                   }
             ,
             .init(title: R.string.product.deleteButton(),
                   image: UIImage(systemName: "trash"),
-                  attributes: UIMenuElement.Attributes.destructive) { action in
+                  attributes: UIMenuElement.Attributes.destructive) { _ in
                       self.viewEventSubject.send(.delete(product: self.product))
                   }
         ]
     }
 }
-
 
 extension ProductListCellActions {
     enum Event {

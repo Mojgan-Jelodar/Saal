@@ -1,6 +1,5 @@
 import UIKit
 
-
 final class PickerViewItem {
     internal var id: String?
     private(set) var name: String
@@ -22,7 +21,6 @@ final class PickerViewItem {
 extension PickerViewItem: PickerItem {
     var title: String { name }
 }
-
 
 extension Array where Element : PickerItem {
     func title(for index : Int) -> String {

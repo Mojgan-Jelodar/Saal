@@ -93,7 +93,6 @@ final class ProductViewController: UIViewController {
         return dataSource
     }()
     
-    
     // MARK: - init
     required init() {
         super.init(nibName: nil, bundle: nil)

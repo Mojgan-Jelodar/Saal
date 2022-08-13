@@ -21,7 +21,7 @@ final class Memento<T:Configuration> : Equatable {
     }
 }
 
-final class ConfigurationCaretaker<T:Configuration>{
+final class ConfigurationCaretaker<T:Configuration> {
     private let key : String
     required init(key : String) {
         self.key = key

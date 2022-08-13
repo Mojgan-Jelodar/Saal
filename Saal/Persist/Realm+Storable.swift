@@ -13,11 +13,9 @@ public enum ConfigurationType {
     case inMemory(identifier: String?)
     
     var associated: String? {
-        get {
-            switch self {
-            case .basic(let url): return url
-            case .inMemory(let identifier): return identifier
-            }
+        switch self {
+        case .basic(let url): return url
+        case .inMemory(let identifier): return identifier
         }
     }
 }

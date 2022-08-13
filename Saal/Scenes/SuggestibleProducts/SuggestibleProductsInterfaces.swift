@@ -14,7 +14,6 @@ public protocol SuggestibleProductsWireframeMoudleDelegate : AnyObject {
     func didFinish(relatedProducts: [Product])
 }
 
-
 protocol SuggestibleProductsWireframeInterface: WireframeInterface {
     func dismissSuggestibleProducts()
 }

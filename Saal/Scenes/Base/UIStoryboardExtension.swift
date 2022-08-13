@@ -1,5 +1,6 @@
 import UIKit
 
+// swiftlint:disable force_cast
 extension UIStoryboard {
 
     func instantiateViewController<T: UIViewController>(ofType _: T.Type, withIdentifier identifier: String? = nil) -> T {

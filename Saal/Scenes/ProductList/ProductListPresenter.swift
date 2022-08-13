@@ -26,7 +26,6 @@ final class ProductListPresenter : ProductListPresenterInterface {
     typealias ViewEvent = ProductListViewController.ViewEvent
     var viewEventSubject: PassthroughSubject<ViewEvent, Never> = .init()
     
-    
     // MARK: - Private properties -
     private let interactor: ProductListInteractorInterface
     private let wireframe: ProductListWireframeInterface
@@ -72,7 +71,6 @@ final class ProductListPresenter : ProductListPresenterInterface {
             }
         }.store(in: &cancellables)
     }
-    
     
 }
 fileprivate extension ProductListPresenter {

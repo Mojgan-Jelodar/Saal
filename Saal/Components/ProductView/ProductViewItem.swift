@@ -6,13 +6,13 @@
 //
 
 import Foundation
-protocol ProductViewItemProtocol : CustomStringConvertible,Hashable  {
+protocol ProductViewItemProtocol : CustomStringConvertible,Hashable {
     var categoryName: String { get }
     var id: String { get }
     var name : String { get }
     var comment : String { get }
 }
-extension ProductViewItemProtocol  {
+extension ProductViewItemProtocol {
     var description: String {
         [self.categoryName,self.name].joined(separator: "-")
     }

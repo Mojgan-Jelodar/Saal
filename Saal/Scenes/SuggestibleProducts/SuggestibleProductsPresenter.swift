@@ -20,14 +20,13 @@ extension SuggestibleProductsViewController {
     }
 }
 
-fileprivate protocol SuggestibleProductsWireframeMoudleProtocol : AnyObject {
+private protocol SuggestibleProductsWireframeMoudleProtocol : AnyObject {
     func getSelectedProducts()
 }
 final class SuggestibleProductsPresenter : Presentation {
     typealias ViewEvent = SuggestibleProductsViewController.ViewEvent
     
     var viewEventSubject: PassthroughSubject<SuggestibleProductsViewController.ViewEvent, Never> = .init()
-    
     
     // MARK: - Private properties -
     

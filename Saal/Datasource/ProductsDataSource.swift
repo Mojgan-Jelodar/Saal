@@ -10,7 +10,7 @@ import UIKit
 import Combine
 
 final class ProductsDataSource<T:ProductViewCellActions> : UITableViewDiffableDataSource<ProductsDataSource.Section,
-                                 ProductsDataSource.ItemIdentifier> {
+                                                           ProductsDataSource.ItemIdentifier> {
     typealias ViewEvent = T.ViewEvent
     
     private var cancellables = Set<AnyCancellable>()
@@ -21,10 +21,9 @@ final class ProductsDataSource<T:ProductViewCellActions> : UITableViewDiffableDa
     private var viewEventSubject: PassthroughSubject<ViewEvent, Never> = .init()
     
     convenience init(tableView: UITableView,
-                  cellIdentifer: String ) {
+                     cellIdentifer: String ) {
         self.init(tableView: tableView,
-                   cellProvider:  {
-            (tableView,indexPath,viewModel) in
+                  cellProvider: { (tableView,indexPath,viewModel) in
             let product = viewModel.product
             let productActions = T.init(product: product)
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifer, for: indexPath)
@@ -41,7 +40,7 @@ final class ProductsDataSource<T:ProductViewCellActions> : UITableViewDiffableDa
         snapshot.appendItems(list.map { ItemIdentifier.list($0)}, toSection: .list)
         self.apply(snapshot, animatingDifferences: true)
     }
-
+    
     func delete(with product: ProductViewItem, animate: Bool = true) {
         let viewModel = ProductsDataSource.ItemIdentifier.list(product)
         var snapshot = self.snapshot()

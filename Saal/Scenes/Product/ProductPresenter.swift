@@ -20,7 +20,7 @@ extension ProductViewController {
     }
 }
 
-fileprivate protocol ProductMoudleProtocol : AnyObject {
+private protocol ProductMoudleProtocol : AnyObject {
     func productRelatedDidUpdated(products:[Product])
 }
 
@@ -53,7 +53,6 @@ final class ProductPresenter : ProductPresenterInterface {
         self.listeningToEvents()
         self.binding()
     }
-
     
     private func listeningToEvents() {
         viewEventSubject.sink { [weak self] event in
@@ -78,7 +77,6 @@ final class ProductPresenter : ProductPresenterInterface {
         }).assign(to: &self.$productViewData)
     }
     
-    
     private func removeRelation(product: ProductViewItem) {
         interactor.deleteRelation(id: product.id)
     }
@@ -94,7 +92,7 @@ final class ProductPresenter : ProductPresenterInterface {
                               name: name,
                               description: productViewData?.description ?? nil,
                               categoryId: categoryId,
-                              relations: productViewData?.relations.map({$0.id} ))
+                              relations: productViewData?.relations.map({$0.id}))
     }
     
     private func getRelatedProducts() {

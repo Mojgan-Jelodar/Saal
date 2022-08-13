@@ -38,7 +38,7 @@ final class ProductListViewController: UITableViewController {
     private lazy var addButton : UIButton = {
         let addButton = UIButton(primaryAction: UIAction(title: "",
                                                          image: UIImage(systemName: "plus.circle"),
-                                                         handler: { [weak self] action in
+                                                         handler: { [weak self] _ in
             guard let self = self else {
                 return
             }

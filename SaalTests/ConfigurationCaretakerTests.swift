@@ -11,7 +11,7 @@ import XCTest
 class ConfigurationCaretakerTests: XCTestCase {
     private var subjectUnderTest : ConfigurationCaretaker<Bool>?
     
-    override func setUp()  {
+    override func setUp() {
         subjectUnderTest = .init(key: "isFirstTime")
     }
     
@@ -25,7 +25,6 @@ class ConfigurationCaretakerTests: XCTestCase {
         //then
         let restore = subjectUnderTest?.restoreMemento()
         XCTAssertEqual(restore, configuration, "They are not equal!")
-        
         
     }
 

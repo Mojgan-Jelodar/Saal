@@ -9,14 +9,13 @@ import Foundation
 import Combine
 import UIKit
 
-
-protocol PickerViewDataSourceDelegate {
+protocol PickerViewDataSourceProtocol {
     var items : [PickerViewItem] { get }
     var numberOfComponents :Int { get}
     init(items : [PickerViewItem])
 }
 
-final class PickerViewDataSource : NSObject,PickerViewDataSourceDelegate,UIPickerViewDataSource,UIPickerViewDelegate {
+final class PickerViewDataSource : NSObject,PickerViewDataSourceProtocol,UIPickerViewDataSource,UIPickerViewDelegate {
     
     var items: [PickerViewItem]
     

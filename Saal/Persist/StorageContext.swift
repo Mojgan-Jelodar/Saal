@@ -36,4 +36,3 @@ protocol StorageContext {
      */
     func fetch<T: Object>(_ model: T.Type, predicate: NSPredicate?, sorted: Sorted?) -> Results<T>
 }
-

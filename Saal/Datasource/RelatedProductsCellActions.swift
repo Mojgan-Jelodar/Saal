@@ -25,13 +25,12 @@ final class RelatedProductsCellActions :  ProductViewCellActions {
         [
             .init(title: R.string.product.deleteButton(),
                   image: UIImage(systemName: "trash"),
-                  attributes: UIMenuElement.Attributes.destructive) { action in
+                  attributes: UIMenuElement.Attributes.destructive) { _ in
                       self.viewEventSubject.send(.delete(product: self.product))
                   }
         ]
     }
 }
-
 
 extension RelatedProductsCellActions {
     enum Event {

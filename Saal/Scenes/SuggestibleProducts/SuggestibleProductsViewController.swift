@@ -47,7 +47,7 @@ final class SuggestibleProductsViewController: UITableViewController {
     
     private func setupView() {
         title = R.string.product.relatedTitle()
-        navigationItem.rightBarButtonItem = .init(title: R.string.common.doneAction(), image: nil, primaryAction: UIAction(handler: { [weak self] action in
+        navigationItem.rightBarButtonItem = .init(title: R.string.common.doneAction(), image: nil, primaryAction: UIAction(handler: { [weak self] _ in
             self?.presenter.viewEventSubject.send(.done)
         }), menu: nil)
         tableView.allowsMultipleSelection = true

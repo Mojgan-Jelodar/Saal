@@ -11,7 +11,6 @@
 import Foundation
 
 final class SuggestibleProductsInteractor : SuggestibleProductsInteractorInterface {
-  
 
     var products: [Product]
     
@@ -23,4 +22,3 @@ final class SuggestibleProductsInteractor : SuggestibleProductsInteractorInterfa
         self.products.indices.filter({indexes.contains($0)}).map({self.products[$0]})
     }
 }
-

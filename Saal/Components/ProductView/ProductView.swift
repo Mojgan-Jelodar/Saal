@@ -68,7 +68,6 @@ final class ProductView<T: ProductViewItemProtocol,S: ProductViewCellActions>: U
         setConstraints()
     }
     
-    
     private func setConstraints() {
         holderView.snp.makeConstraints { make in
             make.directionalEdges.equalToSuperview().inset(Layout.padding4)

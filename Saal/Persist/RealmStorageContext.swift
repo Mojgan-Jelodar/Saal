@@ -9,8 +9,6 @@ import Foundation
 import RealmSwift
 import Combine
 
-// swiftlint:disable force_cast
-
 final class RealmStorageContext: StorageContext {
     var realm: Realm?
     
@@ -35,7 +33,6 @@ final class RealmStorageContext: StorageContext {
     }
 }
 
-
 extension RealmStorageContext {
     func save<T>(object: T)  where T : Object {
         if let realm = object.realm ?? self.realm {
@@ -54,7 +51,7 @@ extension RealmStorageContext {
 
 extension RealmStorageContext {
     
-    func delete<T: Object>( object : T)  {
+    func delete<T: Object>( object : T) {
         if let realm = object.realm ?? self.realm {
             realm.safeWrite({
                 realm.delete(object)

@@ -28,7 +28,7 @@ final public class Category: Object {
     }
     
     func add(product : Product) {
-        if self.products.first(where: { $0.id == product.id}) == nil  {
+        if self.products.first(where: { $0.id == product.id}) == nil {
             if let realm = self.realm {
                 realm.safeWrite {
                     self.products.append(product)

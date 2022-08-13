@@ -9,7 +9,7 @@ import UIKit
 import Combine
 import CombineCocoa
 import SnapKit
-final class PickerView: UITextField,UIContentView {
+final class PickerView: UIView,UIContentView {
     
     @Published private(set)  var rowSelectedPublisher : IndexPath?
     
@@ -36,7 +36,14 @@ final class PickerView: UITextField,UIContentView {
     }
     private var cancellables = Set<AnyCancellable>()
     private func setUpViews() {
-        self.inputView = pickerView
+        self.addSubview(pickerView)
+        self.setConstarints()
+    }
+    
+    private func setConstarints() {
+        pickerView.snp.makeConstraints { make in
+            make.directionalEdges.equalToSuperview()
+        }
     }
     
     private func setUpConfiguration() {
@@ -51,14 +58,6 @@ final class PickerView: UITextField,UIContentView {
         self.categoryPickerViewDataSource?
             .$didSelectRowPublisher
             .assign(to: &$rowSelectedPublisher)
-        
-        self.categoryPickerViewDataSource?
-            .$didSelectRowPublisher
-            .compactMap({$0})
-            .sink(receiveValue: { [weak self] indexPath in
-                guard let self = self else { return  }
-                self.text =  self.categoryPickerViewDataSource?.items[indexPath.row].title
-            }).store(in: &cancellables)
     }
 
 }

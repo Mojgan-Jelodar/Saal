@@ -36,8 +36,6 @@ final class ProductViewController: UIViewController {
     
     private lazy var categoryPickerView: PickerView = {
         let categoryPickerView = PickerView(configuration: PickerView.Configuration(items: []))
-        categoryPickerView.borderStyle = .roundedRect
-        categoryPickerView.placeholder = R.string.category.name()
         return categoryPickerView
     }()
     
@@ -65,8 +63,6 @@ final class ProductViewController: UIViewController {
     private lazy var relatedButton: UIButton = {
         let btn = UIButton(type: .system)
         btn.setImage(.init(systemName: "plus"), for: .normal)
-       // btn.setTitle(R.string.product.relatedTitle(), for: .normal)
-       
         return btn
     }()
     
@@ -126,12 +122,13 @@ final class ProductViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = .init(customView: relatedButton)
         self.tableView.dataSource = dataSource
         self.view.addSubview(stackView)
-        self.stackView.addArrangedSubview(idTextField)
         self.stackView.addArrangedSubview(categoryPickerView)
+        self.stackView.addArrangedSubview(idTextField)
         self.stackView.addArrangedSubview(titleTextField)
         self.stackView.addArrangedSubview(descriptionTextField)
-        self.stackView.addArrangedSubview(tableView)
+        self.stackView.setCustomSpacing(Layout.padding24, after: descriptionTextField)
         self.stackView.addArrangedSubview(saveButton)
+        self.stackView.addArrangedSubview(tableView)
         self.setConstraints()
     }
     

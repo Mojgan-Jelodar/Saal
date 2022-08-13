@@ -27,8 +27,6 @@ final class PickerViewDataSource : NSObject,PickerViewDataSourceProtocol,UIPicke
     
     init(items: [PickerViewItem]) {
         self.items = items
-        guard let index = items.firstIndex(where: {$0.isSelected}) else { return }
-        didSelectRowPublisher = .init(row: index, section: .zero)
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

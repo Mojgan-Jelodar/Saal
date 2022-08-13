@@ -65,6 +65,44 @@ final public class Product: Object {
     func findBy(id : String) -> Product? {
         self.relations.first(where: {$0.id == id})
     }
+    
+    func set(name : String) -> Self {
+        if let realm = self.realm {
+            realm.safeWrite {
+                self.name = name
+            }
+        } else {
+            self.name = name
+        }
+        return self
+    }
+    
+    func set(productDescription : String?) -> Self {
+        if let realm = self.realm {
+            realm.safeWrite {
+                self.productDescription = productDescription
+            }
+        } else {
+            self.productDescription = productDescription
+        }
+        
+        return self
+    }
+    
+    func set(category : Category) -> Self {
+        if let realm = self.realm {
+            realm.safeWrite {
+                let currentCategory = self.category.first
+                currentCategory?.remove(product: self)
+                category.add(product: self)
+            }
+        } else {
+            let currentCategory = self.category.first
+            currentCategory?.remove(product: self)
+            category.add(product: self)
+        }
+        return self
+    }
 }
 extension Product {
     enum Key : String {

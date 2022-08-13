@@ -29,8 +29,7 @@ protocol ProductInteractorInterface: InteractorInterface {
     func addProduct(id : String,
                     name : String,
                     description : String?,
-                    categoryId: String,
-                    relations : [String]?)
+                    categoryId: String)
     func deleteRelation(id: String)
     func getSuggestibleProducts() -> AnyPublisher<[Product],Never>
     func addRelations(products: [Product])

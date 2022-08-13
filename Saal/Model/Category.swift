@@ -28,19 +28,29 @@ final public class Category: Object {
     }
     
     func add(product : Product) {
-        if self.products.first(where: { $0.id == product.id}) == nil {
-            if let realm = self.realm {
-                realm.safeWrite {
-                    self.products.append(product)
-                }
-            } else {
+        if let realm = self.realm {
+            realm.safeWrite {
                 self.products.append(product)
             }
+        } else {
+            self.products.append(product)
         }
     }
     func add(products : [Product]) {
         for product in products {
             self.add(product: product)
+        }
+    }
+    
+    func remove(product : Product) {
+        if let index = self.products.firstIndex(of: product) {
+            if let realm = self.realm {
+                realm.safeWrite {
+                    self.products.remove(at: index)
+                }
+            } else {
+                self.products.remove(at: index)
+            }
         }
     }
     

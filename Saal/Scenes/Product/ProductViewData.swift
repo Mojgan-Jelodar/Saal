@@ -14,11 +14,12 @@ class ProductViewData {
     private(set) var relations : [ProductViewItem] = []
     
     init(product : Product?,
-         categories : [Category]) {
+         categories : [Category],
+         selectedCategory : Category) {
         self.id = product?.id
         self.title = product?.name
         self.description = product?.productDescription
-        self.categories = categories.map({.init(category: $0, isSelected: product?.category.first == $0)})
+        self.categories = categories.map({.init(category: $0, isSelected: selectedCategory.id == $0.id)})
         guard let relations = product?.relatedProducts else { return  }
         self.relations = Array(relations).map({ProductViewItem(id: $0.id,
                                                                categoryName: $0.category.first?.name ?? "",

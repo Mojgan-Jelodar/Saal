@@ -73,7 +73,12 @@ final class ProductPresenter : ProductPresenterInterface {
   
     private func binding() {
         interactor.categories.combineLatest(interactor.product).map({ (categories,product) -> ProductViewData? in
-            let productViewData = ProductViewData(product: product, categories: categories)
+            let category = product?.category.first
+            let categoryIndex = (category != nil) ?  categories.firstIndex(of: category!) : 0
+            let selectedIndex = (self.selectedIndex ?? categoryIndex) ?? .zero
+            let productViewData = ProductViewData(product: product,
+                                                  categories: categories,
+                                                  selectedCategory: categories[selectedIndex])
             return productViewData
         }).assign(to: &self.$productViewData)
         
@@ -100,9 +105,7 @@ final class ProductPresenter : ProductPresenterInterface {
         interactor.addProduct(id: id,
                               name: name,
                               description: productViewData?.description ?? nil,
-                              categoryId: categoryId,
-                              relations: productViewData?.relations.map({$0.id}))
-        
+                              categoryId: categoryId)
     }
     
     private func getRelatedProducts() {

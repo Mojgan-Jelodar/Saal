@@ -36,6 +36,31 @@ final class ProductInteractor {
                                                     sorted: .init(key: "\(Category.Key.id.rawValue)"))
         categorySubject.send(Array(categories))
     }
+    
+    private func upadte(name: String,
+                        description: String?,
+                        categoryId: String) {
+        let category = categorySubject.value.first(where: {$0.id == categoryId})!
+        let product = productSubject.value!
+                        .set(name: name)
+                        .set(category: category)
+                        .set(productDescription: description)
+        storageContext.save(objects: [category,product])
+        productSubject.send(product)
+        
+    }
+    
+    private func add(id: String,
+                     name: String,
+                     description: String?,
+                     categoryId: String) {
+        let category = categorySubject.value.first(where: {$0.id == categoryId})!
+        let product = Product.init(id: id, name: name, productDescription: description)
+        category.add(product: product)
+        storageContext.save(objects: [category,product])
+        productSubject.send(product)
+        
+    }
 }
 
 // MARK: - Extensions -
@@ -53,18 +78,13 @@ extension ProductInteractor: ProductInteractorInterface {
     func addProduct(id: String,
                     name: String,
                     description: String?,
-                    categoryId: String,
-                    relations: [String]?) {
-        let category = categorySubject.value.first(where: {$0.id == categoryId})!
-        let predicate = NSPredicate(format: "id IN $ID_LIST")
-        let products = storageContext.fetch(Product.self,
-                                            predicate: predicate.withSubstitutionVariables(["ID_LIST": relations ?? []]),
-                                            sorted: nil)
-        let product = Product.init(id: id, name: name, productDescription: description)
-        product.add(relations: Array(products))
-        category.add(product: product)
-        storageContext.save(object: category)
-        productSubject.send(product)
+                    categoryId: String) {
+        
+        if self.productSubject.value == nil {
+            self.add(id: id, name: name, description: description, categoryId: categoryId)
+        } else {
+            self.upadte(name: name, description: description, categoryId: categoryId)
+        }
         
     }
     

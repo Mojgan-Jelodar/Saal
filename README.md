@@ -18,9 +18,9 @@ This is an application which shows a list of some products as a list. In additio
 - 1.0.0 
 
 # UI
-## UIKit
-## Modern View Configuration With UIContentConfiguration
-## UITableviewdiffabledatasource 
+- UIKit
+- Modern View Configuration With UIContentConfiguration
+- UITableviewdiffabledatasource 
 
 # Design Pattern Used
 

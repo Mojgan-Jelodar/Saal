@@ -59,6 +59,7 @@ Viper is a design pattern that implements ‘separation of concern’ paradigm. 
 - SnapKit
 - RealmSwift
 - Combine
+- CombineCocoa
 
 
 

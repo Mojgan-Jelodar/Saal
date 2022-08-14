@@ -28,7 +28,7 @@ final class ProductListWireframe: BaseWireframe<ProductListViewController>,Produ
         let moduleViewController = ProductListViewController()
         super.init(viewController: moduleViewController)
         let interactor = ProductListInteractor(storageContext: storageContext)
-        let presenter = ProductListPresenter(interactor: interactor, wireframe: self)
+        let presenter = ProductListPresenter<RunLoop>(interactor: interactor, wireframe: self, debounce: .default)
         moduleViewController.presenter = presenter
         self.dataStore = interactor
       

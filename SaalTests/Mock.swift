@@ -7,6 +7,10 @@
 
 import Saal
 
+extension Contstant {
+    static let memoryIdentifier = "da92f9e8-f966-4ddd-bbe3-fb449e173070"
+}
+
 extension Category {
     static var desk : Category {
         .init(id: "abc",

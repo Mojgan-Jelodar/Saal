@@ -21,7 +21,7 @@ extension ProductListViewController {
     }
 }
 
-final class ProductListPresenter : ProductListPresenterInterface {
+final class ProductListPresenter<S: Scheduler> : ProductListPresenterInterface {
     
     typealias ViewEvent = ProductListViewController.ViewEvent
     var viewEventSubject: PassthroughSubject<ViewEvent, Never> = .init()
@@ -30,6 +30,8 @@ final class ProductListPresenter : ProductListPresenterInterface {
     private let interactor: ProductListInteractorInterface
     private let wireframe: ProductListWireframeInterface
     private var cancellables = Set<AnyCancellable>()
+    private var debounce: Debounce<S>!
+    
     @Published private(set) var products : [ProductViewItem] = []
     @Published private(set) var deletedProduct : ProductViewItem?
     @Published private var keyword : String? {
@@ -37,7 +39,8 @@ final class ProductListPresenter : ProductListPresenterInterface {
             $keyword
                 .compactMap({$0})
                 .dropFirst(2)
-                .debounce(for: .seconds(0.3), scheduler: RunLoop.main)
+                .debounce(for: debounce.dueTime, scheduler: debounce.scheduler)
+                .receive(on: debounce.scheduler)
                 .sink(receiveValue: {$0.isEmpty ? self.fetch() : self.search(keyword: $0)})
                 .store(in: &cancellables)
         }
@@ -47,10 +50,12 @@ final class ProductListPresenter : ProductListPresenterInterface {
     
     init(
         interactor: ProductListInteractorInterface,
-        wireframe: ProductListWireframeInterface
+        wireframe: ProductListWireframeInterface,
+        debounce: Debounce<S>
     ) {
         self.interactor = interactor
         self.wireframe = wireframe
+        self.debounce = debounce
         self.listeningToEvents()
     }
     

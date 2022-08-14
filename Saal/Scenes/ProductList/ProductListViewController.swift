@@ -21,7 +21,7 @@ final class ProductListViewController: UITableViewController {
     
     // MARK: - Public properties -
     
-    var presenter: ProductListPresenter!
+    var presenter: ProductListPresenter<RunLoop>!
     
     // MARK: - Private properties -
     

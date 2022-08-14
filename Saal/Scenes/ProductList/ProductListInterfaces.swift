@@ -19,6 +19,8 @@ protocol ProductListPresenterInterface: PresenterInterface {
 }
 protocol ProductListDataStore {
     var storageContext : StorageContext { get set }
+    
+    init(storageContext : StorageContext) 
 }
 
 protocol ProductListInteractorInterface: InteractorInterface,ProductListDataStore {

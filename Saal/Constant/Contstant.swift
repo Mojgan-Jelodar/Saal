@@ -7,4 +7,5 @@
 
 import Foundation
 
-enum Contstant {}
+public enum Contstant {
+}

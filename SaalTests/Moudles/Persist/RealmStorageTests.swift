@@ -4,9 +4,9 @@
 //
 //  Created by Mozhgan 
 //
-
-import XCTest
 @testable import Saal
+import XCTest
+import Realm
 import RealmSwift
 
 class RealmStorageTests: XCTestCase {
@@ -15,7 +15,7 @@ class RealmStorageTests: XCTestCase {
     
     override  func setUp() {
         do {
-            subjectUnderTest = try .init(configuration: .basic(url: nil))
+            subjectUnderTest = try .init(configuration: .inMemory(identifier: UUID().uuidString))
         } catch let error {
             XCTAssertThrowsError(error.localizedDescription)
         }

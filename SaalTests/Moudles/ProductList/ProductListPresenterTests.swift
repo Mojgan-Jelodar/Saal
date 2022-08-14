@@ -39,7 +39,9 @@ class ProductListPresenterTests: XCTestCase {
     
     func testSerach() {
         var productsOutputs: [ProductViewItem] = []
+        self.presenter.viewEventSubject.send(.search(keyword: "m"))
         self.presenter.viewEventSubject.send(.search(keyword: "ma"))
+        self.presenter.viewEventSubject.send(.search(keyword: "max"))
         presenter.$products.sink { products in
             productsOutputs.append(contentsOf: products)
         }.store(in: &cancellables)

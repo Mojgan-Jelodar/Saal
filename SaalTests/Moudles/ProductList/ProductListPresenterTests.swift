@@ -20,8 +20,11 @@ class ProductListPresenterTests: XCTestCase {
     override func setUp() {
         router = .init()
         interactor = try? .init(storageContext: RealmStorageContext(configuration: .inMemory(identifier: Contstant.memoryIdentifier)))
-        interactor.storageContext.save(objects: [Product.employeeMax,Product.serverK32145])
-        presenter = .init(interactor: interactor, wireframe: router, debounce: .test)
+        interactor.storageContext.save(objects: [Product.employeeMax,Product.serverK32145,Product.desk34,Product.calculatorT5812])
+        presenter = .init(interactor: interactor, wireframe: router, debounce: Debounce.test)
+        router.navigationPublisher.sink { [weak self] desination in
+            self?.navigationOutputs.append(desination)
+        }.store(in: &cancellables)
     }
     
     override func tearDown() {
@@ -46,16 +49,32 @@ class ProductListPresenterTests: XCTestCase {
             productsOutputs.append(contentsOf: products)
         }.store(in: &cancellables)
     }
+    
+    func testAdd() throws {
+        self.presenter.viewEventSubject.send(.add)
+        XCTAssertEqual(self.navigationOutputs.last,ProductListViewController.Desination.add(delegate:self.presenter))
+    }
+    
+    func testUpdate() {
+        let product = Product.desk34
+        let productViewItem = ProductViewItem(id: product.id,
+                                              categoryName: product.category.first?.name ?? "",
+                                              name: product.name,
+                                              comment: product.productDescription ?? "")
+        self.presenter.viewEventSubject.send(.update(product: productViewItem))
+        XCTAssertEqual(self.navigationOutputs.last,ProductListViewController.Desination.update(product: product, delegate: self.presenter))
+    }
+    
+    func testDelete() {
+        let product = Product.desk34
+        let productViewItem = ProductViewItem(id: product.id,
+                                              categoryName: product.category.first?.name ?? "",
+                                              name: product.name,
+                                              comment: product.productDescription ?? "")
+        self.presenter.viewEventSubject.send(.delete(product: productViewItem))
+        self.presenter.$deletedProduct.sink { deletedProduct in
+            XCTAssertTrue(deletedProduct?.id == product.id)
+        }.store(in: &cancellables)
+    }
 
-}
-
-fileprivate extension ProductViewItem {
-    static let products : [ProductViewItem] = [.init(id: Product.employeeMax.id,
-                                                    categoryName: Product.employeeMax.category.first?.name ?? "",
-                                                    name: Product.employeeMax.name,
-                                                    comment: Product.employeeMax.productDescription ?? ""),
-                                               .init(id: Product.desk34.id,
-                                                     categoryName: Product.desk34.category.first?.name ?? "",
-                                                                                               name: Product.desk34.name,
-                                                                                               comment: Product.desk34.productDescription ?? "")]
 }

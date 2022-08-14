@@ -12,7 +12,6 @@ extension ProductListPresenterTests {
     final class MockProductListWireframe: ProductListWireframeInterface {
         
         private let navigationSubject = PassthroughSubject<ProductListViewController.Desination, Never>()
-        
         var  navigationPublisher : AnyPublisher<ProductListViewController.Desination, Never> {
             navigationSubject.eraseToAnyPublisher()
         }

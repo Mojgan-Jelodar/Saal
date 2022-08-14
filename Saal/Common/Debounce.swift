@@ -20,6 +20,6 @@ extension Debounce where S == RunLoop {
 
 extension Debounce where S == ImmediateScheduler {
     static var test: Debounce<S> {
-        Debounce(scheduler: ImmediateScheduler.shared, dueTime: .zero)
+        Debounce(scheduler: ImmediateScheduler.shared, dueTime: .microseconds(500))
     }
 }

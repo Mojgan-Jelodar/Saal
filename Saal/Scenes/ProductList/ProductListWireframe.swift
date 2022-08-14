@@ -11,9 +11,21 @@
 import UIKit
 
 extension ProductListViewController {
-    enum Desination {
+    enum Desination  : Equatable {
         case add(delegate :ProductMoudleDelegate)
         case update(product : Product,delegate :ProductMoudleDelegate)
+        
+        static func == (lhs: ProductListViewController.Desination, rhs: ProductListViewController.Desination) -> Bool {
+            switch(lhs,rhs) {
+            case (.add, .add):
+                return true
+            case (.update,.update) :
+                return true
+            default :
+                return false
+            }
+        }
+        
     }
 }
 protocol ProductListWireframeDS {

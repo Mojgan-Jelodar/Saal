@@ -62,6 +62,10 @@
 		0998C6ED289C2C7400C8C360 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0998C6EC289C2C7400C8C360 /* Category.swift */; };
 		0998C6F4289C62EE00C8C360 /* RealmStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0998C6F3289C62EE00C8C360 /* RealmStorageTests.swift */; };
 		0998C6F6289C62FE00C8C360 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0998C6F5289C62FE00C8C360 /* Mock.swift */; };
+		09CAD72D28AB8D32005F1433 /* SuggestibleProductsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CAD72C28AB8D32005F1433 /* SuggestibleProductsPresenterTests.swift */; };
+		09CAD73028AB8F86005F1433 /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = 09CAD72F28AB8F86005F1433 /* Quick */; };
+		09CAD73328AB91C2005F1433 /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = 09CAD73228AB91C2005F1433 /* Nimble */; };
+		09CAD73628ABBDC5005F1433 /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = 09CAD73528ABBDC5005F1433 /* Nimble */; };
 		09CBFCE028A7372D002B221F /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 09CBFCDE28A7372D002B221F /* LICENSE */; };
 		09CBFCE128A7372D002B221F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 09CBFCDF28A7372D002B221F /* README.md */; };
 		09E7A60E28A51D41009EDDAE /* PickerViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E7A60D28A51D41009EDDAE /* PickerViewDataSource.swift */; };
@@ -154,6 +158,7 @@
 		0998C6EC289C2C7400C8C360 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		0998C6F3289C62EE00C8C360 /* RealmStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmStorageTests.swift; sourceTree = "<group>"; };
 		0998C6F5289C62FE00C8C360 /* Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mock.swift; sourceTree = "<group>"; };
+		09CAD72C28AB8D32005F1433 /* SuggestibleProductsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestibleProductsPresenterTests.swift; sourceTree = "<group>"; };
 		09CBFCDE28A7372D002B221F /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		09CBFCDF28A7372D002B221F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		09E7A60D28A51D41009EDDAE /* PickerViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewDataSource.swift; sourceTree = "<group>"; };
@@ -179,7 +184,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				090E5733289DB67A00FABE11 /* SnapKit in Frameworks */,
+				09CAD73628ABBDC5005F1433 /* Nimble in Frameworks */,
+				09CAD73028AB8F86005F1433 /* Quick in Frameworks */,
 				090E5740289DD2A400FABE11 /* Rswift in Frameworks */,
+				09CAD73328AB91C2005F1433 /* Nimble in Frameworks */,
 				090E571C289D6B0B00FABE11 /* CombineCocoa in Frameworks */,
 				09253084289ACBB900EFD512 /* RealmSwift in Frameworks */,
 			);
@@ -415,6 +423,7 @@
 		0956469728A7B42700157B32 /* Moudles */ = {
 			isa = PBXGroup;
 			children = (
+				09CAD72B28AB8CD6005F1433 /* Relations */,
 				0956469628A7B3B800157B32 /* ProductList */,
 				0992691E28A91A440076B070 /* Product */,
 				0956469E28A7C63800157B32 /* Persist */,
@@ -455,6 +464,14 @@
 				0998C6EC289C2C7400C8C360 /* Category.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		09CAD72B28AB8CD6005F1433 /* Relations */ = {
+			isa = PBXGroup;
+			children = (
+				09CAD72C28AB8D32005F1433 /* SuggestibleProductsPresenterTests.swift */,
+			);
+			path = Relations;
 			sourceTree = "<group>";
 		};
 		09E7A60F28A577D8009EDDAE /* Mock */ = {
@@ -503,6 +520,9 @@
 				090E571B289D6B0B00FABE11 /* CombineCocoa */,
 				090E5732289DB67A00FABE11 /* SnapKit */,
 				090E573F289DD2A400FABE11 /* Rswift */,
+				09CAD72F28AB8F86005F1433 /* Quick */,
+				09CAD73228AB91C2005F1433 /* Nimble */,
+				09CAD73528ABBDC5005F1433 /* Nimble */,
 			);
 			productName = Saal;
 			productReference = 09253019289ABBE700EFD512 /* Saal.app */;
@@ -581,6 +601,8 @@
 				090E571A289D6B0B00FABE11 /* XCRemoteSwiftPackageReference "CombineCocoa" */,
 				090E5731289DB67A00FABE11 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				090E573E289DD2A300FABE11 /* XCRemoteSwiftPackageReference "R.swift" */,
+				09CAD72E28AB8F85005F1433 /* XCRemoteSwiftPackageReference "Quick" */,
+				09CAD73128AB91C2005F1433 /* XCRemoteSwiftPackageReference "Nimble" */,
 			);
 			productRefGroup = 0925301A289ABBE700EFD512 /* Products */;
 			projectDirPath = "";
@@ -729,6 +751,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				09253034289ABBEB00EFD512 /* SaalTests.swift in Sources */,
+				09CAD72D28AB8D32005F1433 /* SuggestibleProductsPresenterTests.swift in Sources */,
 				0998C6F4289C62EE00C8C360 /* RealmStorageTests.swift in Sources */,
 				0992692228A91AE50076B070 /* MockProductWireframe.swift in Sources */,
 				0992692028A91A970076B070 /* ProductPresenterTests.swift in Sources */,
@@ -809,8 +832,10 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -832,6 +857,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -869,8 +895,10 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -885,6 +913,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1091,6 +1120,22 @@
 				kind = branch;
 			};
 		};
+		09CAD72E28AB8F85005F1433 /* XCRemoteSwiftPackageReference "Quick" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Quick.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.2;
+			};
+		};
+		09CAD73128AB91C2005F1433 /* XCRemoteSwiftPackageReference "Nimble" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Nimble.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1113,6 +1158,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 09253082289ACBB900EFD512 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
+		};
+		09CAD72F28AB8F86005F1433 /* Quick */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09CAD72E28AB8F85005F1433 /* XCRemoteSwiftPackageReference "Quick" */;
+			productName = Quick;
+		};
+		09CAD73228AB91C2005F1433 /* Nimble */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09CAD73128AB91C2005F1433 /* XCRemoteSwiftPackageReference "Nimble" */;
+			productName = Nimble;
+		};
+		09CAD73528ABBDC5005F1433 /* Nimble */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09CAD73128AB91C2005F1433 /* XCRemoteSwiftPackageReference "Nimble" */;
+			productName = Nimble;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

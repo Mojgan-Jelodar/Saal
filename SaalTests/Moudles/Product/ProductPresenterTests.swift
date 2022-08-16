@@ -8,6 +8,7 @@
 import XCTest
 import Combine
 
+// swiftlint:disable force_try
 class ProductPresenterTests: XCTestCase {
     private var presenter: ProductPresenter!
     private var router: MockProductWireframe!

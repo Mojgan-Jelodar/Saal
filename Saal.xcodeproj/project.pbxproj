@@ -55,6 +55,9 @@
 		092FD73A28A33403006CC029 /* RelatedProductsCellActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092FD73928A33403006CC029 /* RelatedProductsCellActions.swift */; };
 		0954383528EE13F100020747 /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = 0954383428EE13F100020747 /* Nimble */; };
 		0954383B28EE142300020747 /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = 0954383A28EE142300020747 /* Quick */; };
+		0954383E28EE303F00020747 /* AppCenterAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 0954383D28EE303F00020747 /* AppCenterAnalytics */; };
+		0954384028EE303F00020747 /* AppCenterCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = 0954383F28EE303F00020747 /* AppCenterCrashes */; };
+		0954384228EE303F00020747 /* AppCenterDistribute in Frameworks */ = {isa = PBXBuildFile; productRef = 0954384128EE303F00020747 /* AppCenterDistribute */; };
 		0956469928A7B48500157B32 /* ProductListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0956469828A7B48500157B32 /* ProductListPresenterTests.swift */; };
 		095646A228A7CB8D00157B32 /* MockProductListWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095646A128A7CB8D00157B32 /* MockProductListWireframe.swift */; };
 		097C1668289E647A00283BB5 /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097C1667289E647A00283BB5 /* ProductView.swift */; };
@@ -183,8 +186,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				090E5733289DB67A00FABE11 /* SnapKit in Frameworks */,
+				0954384228EE303F00020747 /* AppCenterDistribute in Frameworks */,
+				0954384028EE303F00020747 /* AppCenterCrashes in Frameworks */,
 				090E5740289DD2A400FABE11 /* Rswift in Frameworks */,
 				090E571C289D6B0B00FABE11 /* CombineCocoa in Frameworks */,
+				0954383E28EE303F00020747 /* AppCenterAnalytics in Frameworks */,
 				09253084289ACBB900EFD512 /* RealmSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -518,6 +524,9 @@
 				090E571B289D6B0B00FABE11 /* CombineCocoa */,
 				090E5732289DB67A00FABE11 /* SnapKit */,
 				090E573F289DD2A400FABE11 /* Rswift */,
+				0954383D28EE303F00020747 /* AppCenterAnalytics */,
+				0954383F28EE303F00020747 /* AppCenterCrashes */,
+				0954384128EE303F00020747 /* AppCenterDistribute */,
 			);
 			productName = Saal;
 			productReference = 09253019289ABBE700EFD512 /* Saal.app */;
@@ -602,6 +611,7 @@
 				090E573E289DD2A300FABE11 /* XCRemoteSwiftPackageReference "R.swift" */,
 				0954383328EE13F100020747 /* XCRemoteSwiftPackageReference "Nimble" */,
 				0954383928EE142300020747 /* XCRemoteSwiftPackageReference "Quick" */,
+				0954383C28EE303F00020747 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */,
 			);
 			productRefGroup = 0925301A289ABBE700EFD512 /* Products */;
 			projectDirPath = "";
@@ -922,8 +932,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Saal/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -939,6 +950,7 @@
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.organization.Saal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -950,8 +962,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Saal/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -967,6 +980,7 @@
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.organization.Saal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1135,6 +1149,14 @@
 				kind = branch;
 			};
 		};
+		0954383C28EE303F00020747 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/microsoft/appcenter-sdk-apple.git";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1167,6 +1189,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0954383928EE142300020747 /* XCRemoteSwiftPackageReference "Quick" */;
 			productName = Quick;
+		};
+		0954383D28EE303F00020747 /* AppCenterAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0954383C28EE303F00020747 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
+			productName = AppCenterAnalytics;
+		};
+		0954383F28EE303F00020747 /* AppCenterCrashes */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0954383C28EE303F00020747 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
+			productName = AppCenterCrashes;
+		};
+		0954384128EE303F00020747 /* AppCenterDistribute */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0954383C28EE303F00020747 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
+			productName = AppCenterDistribute;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
